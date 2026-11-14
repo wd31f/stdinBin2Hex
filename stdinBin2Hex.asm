@@ -29,15 +29,15 @@ readStart:
     and bl, 00000111b
     add ch, 0x30
     add ch, bl
-    lea rbx, [rdx * 3]
-    test rbx, rbx
+    lea ebx, [rdx*2 + rdx]
+    test ebx, ebx
     mov word [rsi + rbx], cx
-    mov byte [rsi + 2 + rbx], 0x20
+    mov byte [rsi + rbx + 2], 0x20
     jz short .loopEnd
     dec rdx
     jmp short .loop
 .loopEnd:
-    lea rdx, [rax*3]
+    lea edx, [rax*2 + rax]
     mov eax, 1
     mov edi, 1
     syscall 
