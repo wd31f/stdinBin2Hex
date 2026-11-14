@@ -9,9 +9,9 @@ readStart:
     xor edi, edi
     mov edx, 4096 ; block size
     syscall
-    cmp eax, strict byte 0
+    cmp rax, strict byte 0
     jle short readDone
-    mov edx, eax
+    mov rdx, rax
 .loop:
     mov ch, byte [rsi + rdx]
     mov cl, ch
@@ -29,15 +29,15 @@ readStart:
     and bl, 00000111b
     add ch, 0x30
     add ch, bl
-    lea ebx, [edx * 3]
-    test ebx, ebx
+    lea rbx, [rdx * 3]
+    test rbx, rbx
     mov word [rsi + rbx], cx
     mov byte [rsi + 2 + rbx], 0x20
     jz short .loopEnd
     dec rdx
     jmp short .loop
 .loopEnd:
-    lea edx, [eax*3]
+    lea rdx, [rax*3]
     mov eax, 1
     mov edi, 1
     syscall 
