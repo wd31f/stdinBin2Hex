@@ -1,4 +1,4 @@
-section .bss
+section .bss ; wd31f 
 buf2 resb 12289 ; must be >= block size *3 +1 
 section .text
 global _start
